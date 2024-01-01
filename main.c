@@ -375,6 +375,15 @@ void process_for_delay_between_steps(void)
 	yield();
 }
 
+void secure_the_process_stack_pointer_over_c(process_id process_id_of_process_to_update, uintptr_t new_value_of_process_stack_pointer)
+{
+	process_list[process_id_of_process_to_update].process_stack_pointer = new_value_of_process_stack_pointer;
+}
+
+uintptr_t retrieve_the_process_stack_pointer_over_c(process_id process_id_of_process_to_retrieve_its_stack_pointer)
+{
+	return process_list[process_id_of_process_to_retrieve_its_stack_pointer].process_stack_pointer;
+}
 
 
 /* --------------  S t a r t    o f    p r o g r a m  -----------------  */
@@ -386,4 +395,5 @@ int main(void)
 		while(1)
 	{
 	}
+	
 }
