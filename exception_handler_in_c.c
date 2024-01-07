@@ -1,3 +1,5 @@
+///@file exception_handler.c
+
 #include "exception_handler.h"
 
 void hard_fault_handler_over_c(uint32_t* hardfault_args, uint32_t lr_value)

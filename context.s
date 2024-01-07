@@ -1,5 +1,3 @@
-///@file context.s
-
 NO EQU 0x0
 YES EQU 0x1
 IS_C_AIDED EQU NO

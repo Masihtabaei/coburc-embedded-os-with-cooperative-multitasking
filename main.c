@@ -390,11 +390,32 @@ void process_for_delay_between_steps(void)
 	yield();
 }
 
+/**
+Function used for securing the stack pointer over the C as an alternative to Assembly.
+
+Securing the stack pointer of a specific process by assigning the new value of the stack pointer to the corresponding struct member
+
+@param[in] process_id process_id_of_process_to_update (id of the process its stack pointer should get secured)
+@param[in] uintptr_t new_value_of_process_stack_pointer (new/current value of the stack pointer for the process previously specified by its id)
+@param[out] void
+
+*/
 void secure_the_process_stack_pointer_over_c(process_id process_id_of_process_to_update, uintptr_t new_value_of_process_stack_pointer)
 {
+	// Assigning the new/current value of the stack pointer to the corresponding struct member
 	process_list[process_id_of_process_to_update].process_stack_pointer = new_value_of_process_stack_pointer;
 }
 
+/**
+Function used for retrieving the stack pointer over the C as an alternative to Assembly.
+
+Securing the stack pointer of a specific process by assigning the new value of the stack pointer to the corresponding struct member
+
+@param[in] process_id process_id_of_process_to_update (id of the process its stack pointer should get secured)
+@param[in] uintptr_t new_value_of_process_stack_pointer (new/current value of the stack pointer for the process previously specified by its id)
+@param[out] void
+
+*/
 uintptr_t retrieve_the_process_stack_pointer_over_c(process_id process_id_of_process_to_retrieve_its_stack_pointer)
 {
 	return process_list[process_id_of_process_to_retrieve_its_stack_pointer].process_stack_pointer;
@@ -403,12 +424,28 @@ uintptr_t retrieve_the_process_stack_pointer_over_c(process_id process_id_of_pro
 
 /* --------------  S t a r t    o f    p r o g r a m  -----------------  */
 
+/**
+Function used as the entry point of the application.
+
+Serving as the entry point of the application by taking care of following tasks:
+	- Creating a process for startup and initialization
+	- Loading the initial/first context
+	- Keeping the program running by using an infinite loop (while(1/true)).
+
+@param[in] void
+@param[out] int (exit-code)
+
+*/
 int main(void)
 {
-	uint32_t cd = CoreDebug->DHCSR;
-
-	*(uint32_t*)0xDEADBEEF=(0xA05F<<3);
+	// Uncomment the following line of code to produce a HardFault
+	//*(uint32_t*)0xDEADBEEF=(0xA05F<<3);
+	
+	// Creating a process for startup and initialization and assigning the returning value (process id generated) to a local variable
 	uint8_t process_id_of_initial_process = create(process_for_startup_and_initialization);
+	// Loading the initial/first context
 	load_first_context(process_id_of_initial_process);
+	
+	// Infinite-loop to keep the program running
 	while(1);
 }
