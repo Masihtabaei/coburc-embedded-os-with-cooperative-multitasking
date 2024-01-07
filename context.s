@@ -1,12 +1,14 @@
+///@file context.s
+
 NO EQU 0x0
 YES EQU 0x1
-IS_C_AIDED EQU YES
+IS_C_AIDED EQU NO
+	
+
 	AREA context_related_variables
 process_id DCB 0x00
 	ALIGN
 process_id_of_process_to_run DCB 0x00
-	ALIGN
-process_stack_pointer DCD 0x00000000
 	AREA context_related_constants
 struct_size DCB 0x0C
 stack_pointer_relativ_offset DCB 0x08

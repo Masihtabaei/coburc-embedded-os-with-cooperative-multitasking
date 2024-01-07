@@ -1,3 +1,4 @@
+///@file main.c
 /**************************************************************************
  *  COPYRIGHT (C) Peter Raab  2019                                        *
  *                                                                        *
@@ -34,6 +35,7 @@
 #include "stm32g474xx.h"
 #include "delay.h"
 #include "context.h"
+#include "exception_handler.h"
 
 /* ----------- V A R I A B L E S   &  C O N S T A N T S  --------------- */
 // Defining a macro representing the right hand side of our led sequence
@@ -59,7 +61,8 @@ typedef enum
 {
 	IDLE,
 	RUNNING,
-	DESTROYED
+	DESTROYED,
+	MARKED_FOR_DESTRUCTION
 } process_state;
 
 typedef enum
@@ -291,13 +294,14 @@ process_manipulation_status destroy(process_id id_of_process_to_destoroy)
 	else if(process_to_destroy.state == RUNNING)
 	{
 		// Retruning the "DESTRUCTION_BLOCKED_DURING_EXECUTION" as the status of the manipulation indicating that the process can not get destroyed during its execution.
+		process_list[id_of_process_to_destoroy].state = MARKED_FOR_DESTRUCTION;
 		return DESTRUCTION_BLOCKED_DURING_EXECUTION;
 	}
 	// Destroying the process if non of upper mentioned cases are applicable
 	else
 	{
 		// Assigning the "DESTROYED" state to the process indicating that the proces is destroyed
-		process_to_destroy.state = DESTROYED;
+		process_list[id_of_process_to_destoroy].state = DESTROYED;
 		// Retruning the "SUCCESSFULLY_DESTROYED" as the status of the manipulation indicating that the process is destroyed successfully.
 		return SUCCESSFULLY_DESTROYED;
 	}
@@ -305,18 +309,27 @@ process_manipulation_status destroy(process_id id_of_process_to_destoroy)
 
 void yield(void)
 {
+
 	process_id id_of_process_currently_running = 0;
 	process_id id_of_process_to_run = 0;
 	uint8_t index_for_iterating_over_processes = 0;
 	
-	while(process_list[index_for_iterating_over_processes].state != RUNNING && index_for_iterating_over_processes < NUMBER_OF_PROCESSES)
+	while((process_list[index_for_iterating_over_processes].state != RUNNING && process_list[index_for_iterating_over_processes].state != MARKED_FOR_DESTRUCTION)&& index_for_iterating_over_processes < NUMBER_OF_PROCESSES)
 	{
 		index_for_iterating_over_processes++;		
 	}
 	id_of_process_currently_running = index_for_iterating_over_processes;
 	
+	if(process_list[id_of_process_currently_running].state == MARKED_FOR_DESTRUCTION)
+	{
+		destroy(id_of_process_currently_running);
+	}
+	else
+	{
+		process_list[id_of_process_currently_running].state = IDLE;
+	}
+	
 	index_for_iterating_over_processes = ((id_of_process_currently_running + 1) == NUMBER_OF_PROCESSES) ? 0 : id_of_process_currently_running + 1;
-	process_list[id_of_process_currently_running].state = IDLE;
 	while(process_list[index_for_iterating_over_processes].state != IDLE)
 	{
 		index_for_iterating_over_processes = ((index_for_iterating_over_processes + 2) % NUMBER_OF_PROCESSES == 0) ? 0 : index_for_iterating_over_processes + 1;
@@ -337,7 +350,8 @@ void process_for_startup_and_initialization(void)
 	//create(process_for_delay_between_steps);
 	//create(process_for_right_strip_of_leds);
 	//create(process_for_delay_between_steps);
-		// Enabling the clock for GPIO-port A
+	
+	// Enabling the clock for GPIO-port A
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOCEN;
 	
 	// Configuring the first 8 pins of GPIO-port A as GP-output pins
@@ -354,6 +368,7 @@ void process_for_startup_and_initialization(void)
 	// Turning all leds off
 	GPIOC->ODR = 0x0000;
 	
+	destroy(0);
 	yield();
 }
 void process_for_left_strip_of_leds(void)
@@ -370,7 +385,7 @@ void process_for_right_strip_of_leds(void)
 
 void process_for_delay_between_steps(void)
 {
-	process_list[0].state = DESTROYED;
+	//process_list[0].state = DESTROYED;
 	delayms(500);
 	yield();
 }
@@ -387,13 +402,13 @@ uintptr_t retrieve_the_process_stack_pointer_over_c(process_id process_id_of_pro
 
 
 /* --------------  S t a r t    o f    p r o g r a m  -----------------  */
-	
+
 int main(void)
 {
+	uint32_t cd = CoreDebug->DHCSR;
+
+	*(uint32_t*)0xDEADBEEF=(0xA05F<<3);
 	uint8_t process_id_of_initial_process = create(process_for_startup_and_initialization);
 	load_first_context(process_id_of_initial_process);
-		while(1)
-	{
-	}
-	
+	while(1);
 }
