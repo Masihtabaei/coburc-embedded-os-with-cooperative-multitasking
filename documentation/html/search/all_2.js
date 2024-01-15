@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['main_2ec_1',['main.c',['../main_8c.html',1,'']]]
+  ['exception_5fhandler_5fin_5fc_2ec_0',['exception_handler_in_c.c',['../exception__handler__in__c_8c.html',1,'']]]
 ];

@@ -1,24 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "cdmprs",
-  1: "p",
-  2: "m",
-  3: "cdmprs"
+  0: "cdehmprsy",
+  1: "em",
+  2: "cdhmprsy"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "classes",
-  2: "files",
-  3: "functions"
+  1: "files",
+  2: "functions"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Data Structures",
-  2: "Files",
-  3: "Functions"
+  1: "Files",
+  2: "Functions"
 };
 

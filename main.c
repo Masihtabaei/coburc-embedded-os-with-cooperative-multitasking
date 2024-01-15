@@ -189,20 +189,32 @@ Creating a new process by accomplishing following tasks:
 */
 process_id create(process_function function_for_process_to_create)
 {
+	// Defining a variable for storing id of the process created
 	uint32_t actual_process_id = 0;
+	// Defining a static variable for storing id of the last process created 
 	static uint32_t current_process_id = 0;
+	
+	// Checking whether we still can create a new process
 	if(current_process_id < NUMBER_OF_PROCESSES)
 	{
+		// Assigning function of the process to the corresponding entry inside of the stack
 		processes_stacks[current_process_id][SIZE_OF_SUB_STACK_PRO_PROCESS - 1] = (uintptr_t) function_for_process_to_create;
+		// Iterating over the stack entries (skipping the first entry [function pointer/LR])
 		for(int i = SIZE_OF_SUB_STACK_PRO_PROCESS - 2; i > 0; i--)
 		{
+			// Initializing the entry with the value zero
 			processes_stacks[current_process_id][i] = (uint32_t) 0;
 		}
+		// Creating a process context block for the new process
 		process_context_block process_context_block_for_process_to_create = {current_process_id, IDLE, (uintptr_t) (&processes_stacks[current_process_id][SIZE_OF_SUB_STACK_PRO_PROCESS - SIZE_OF_STACK_FRAME_PRO_PROCESS])};
+		// Adding the process newly created to the list of processes
 		process_list[current_process_id] = process_context_block_for_process_to_create;
+		// Setting the actual process id
 		actual_process_id = current_process_id;
+		// Increasing the static variable that we use for keeping track of available process ids
 		current_process_id++;
 	}
+	// Returning id of the process created
 	return actual_process_id;
 }
 
@@ -218,7 +230,7 @@ Destroying a process by accomplishing following tasks:
 			-> Returning a manipulation status indicating the the process is currently running and can not get destroyed consequently. 
 		- Destroying the process if non of above mentioned cases are applicable
 
-@param[in] process_id id_of_process_to_destoroy (parameter containing the ID for identifying the process to destroy)
+@param[in] process_id id_of_process_to_destroy (parameter containing the ID for identifying the process to destroy)
 @param[out] process_manipulation_status (status of the manipulation [in this case destruction]-action)
 
 */
@@ -250,35 +262,70 @@ process_manipulation_status destroy(process_id id_of_process_to_destoroy)
 	}
 }
 
+/**
+Function defined as a part of our API for process scheduling (most important) and freeing up the ressources.
+
+Scheduling and freeing up the resources by accomplishing following tasks:
+	- Finding the process currently running and changing its state
+	- Finding the process that should get executed next and changing its state
+	- Switching from the old process to the new one by calling the corresponding function
+	
+
+@param[in] void
+@param[out] void
+
+*/
 void yield(void)
 {
-
+	// Defining a variable for storing id of the process currently running
 	process_id id_of_process_currently_running = 0;
+	// Defining a variable for storing id of the process that should get executed next
 	process_id id_of_process_to_run = 0;
+	// Defining a variable as an index for iterating over processes
 	uint8_t index_for_iterating_over_processes = 0;
 	
+	// Iterating over the list of the processes to find the process currently running
 	while((process_list[index_for_iterating_over_processes].state != RUNNING && process_list[index_for_iterating_over_processes].state != MARKED_FOR_DESTRUCTION)&& index_for_iterating_over_processes < NUMBER_OF_PROCESSES)
 	{
+		// Increasing the index
 		index_for_iterating_over_processes++;		
 	}
+	// Assigning the index of process found to the preivously defined variable for storing id of the process currently running
 	id_of_process_currently_running = index_for_iterating_over_processes;
 	
+	// Checking whether the process currently running is marked for destruction
 	if(process_list[id_of_process_currently_running].state == MARKED_FOR_DESTRUCTION)
 	{
+		// Destroying the process that was marked for destruction
 		destroy(id_of_process_currently_running);
 	}
 	else
 	{
+		// Changing the state of the process currently running to the "IDLE"-state
 		process_list[id_of_process_currently_running].state = IDLE;
 	}
 	
+	// Re-calculating the index so that we can use it again for iterating over the list of processes
 	index_for_iterating_over_processes = ((id_of_process_currently_running + 1) == NUMBER_OF_PROCESSES) ? 0 : id_of_process_currently_running + 1;
+	// Iterating over the list of the processes to find the process that should get executed next
 	while(process_list[index_for_iterating_over_processes].state != IDLE)
 	{
+		// Re-calculating the index so that we can continue the iteration
 		index_for_iterating_over_processes = ((index_for_iterating_over_processes + 2) % NUMBER_OF_PROCESSES == 0) ? 0 : index_for_iterating_over_processes + 1;
 	}
+	/* 
+		Assigning the index of process found to
+		the preivously defined variable for storing id of the process
+		that should get executed next
+	*/
 	id_of_process_to_run = process_list[index_for_iterating_over_processes].id;
+	// Setting the state of the new process into the "RUNNING"-state
 	process_list[id_of_process_to_run].state = RUNNING;
+	/*
+		Switching from the old process to the new one
+		(actually changing the contexts of those processes)
+		by calling the corresponding function
+	*/
 	switch_context(id_of_process_currently_running, id_of_process_to_run);
 }
 
@@ -300,7 +347,7 @@ Taking care of the startup process and all initialization by accomplishing follo
 */
 void process_for_startup_and_initialization(void)
 {
-	// Setting its state into the "RUNNING" state
+	// Setting the state of this process into the "RUNNING"-state
 	process_list[0].state = RUNNING;
 	
 	// Creating the rest of processes
@@ -433,7 +480,7 @@ Function used as the entry point of the application.
 Serving as the entry point of the application by taking care of following tasks:
 	- Creating a process for startup and initialization
 	- Loading the initial/first context
-	- Keeping the program running by using an infinite loop (while(1/true)).
+	- Keeping the program running by using an infinite loop (while(1/true))
 
 @param[in] void
 @param[out] int (exit-code)

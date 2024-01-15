@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ThirdProjectEBSy: exception_handler.h Source File</title>
+<title>ThirdProjectEBSy: exception_handler_in_c.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('exception__handler_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('exception__handler__in__c_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,35 +95,69 @@ $(document).ready(function(){initNavTree('exception__handler_8h_source.html','')
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">exception_handler.h</div></div>
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">exception_handler_in_c.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _EXCEPTION_HANDLER_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">    #define _EXCEPTION_HANDLER_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;stm32g474xx.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;stdio.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*  - M a c r o s                                                        */</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define NUMBER_OF_ROWS_TO_DISPLAY ((uint8_t) 18)</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define MAXIMUM_NUMBER_OF_CHARACTERRS_IN_EACH_ROW ((uint8_t) 100)</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/*  - F u n c t i o n  P r o t o t y p e s                               */</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/* </span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">    Declaring a function for the hard_fault_handler_over_c-function </span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">    (you can find more information on this function down by its defintion)</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> hard_fault_handler_over_c(uint32_t* hardfault_args, uint32_t lr_value);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif </span><span class="comment">// _EXCEPTION_HANDLER_H</span></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="textblock"><code>#include &quot;exception_handler.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae2b3ee83302e1eaf01807e613f23eb25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception__handler__in__c_8c.html#ae2b3ee83302e1eaf01807e613f23eb25">hard_fault_handler_over_c</a> (uint32_t *hardfault_args, uint32_t lr_value)</td></tr>
+<tr class="memdesc:ae2b3ee83302e1eaf01807e613f23eb25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used for handling the hard faults.  <br /></td></tr>
+<tr class="separator:ae2b3ee83302e1eaf01807e613f23eb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae2b3ee83302e1eaf01807e613f23eb25" name="ae2b3ee83302e1eaf01807e613f23eb25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2b3ee83302e1eaf01807e613f23eb25">&#9670;&#160;</a></span>hard_fault_handler_over_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hard_fault_handler_over_c </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>hardfault_args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>lr_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function used for handling the hard faults. </p>
+<p>Handling the hard faults occured by accomplishing following tasks:</p><ul>
+<li>Defining a buffer for displaying stacked values</li>
+<li>Setting breakpoints (once before displaying the stacked values and once after that)</li>
+<li>Keeping the program running by using an infinite loop (while(1/true))</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">uint32_t*</td><td>hardfault_args (id of the process its stack pointer should get secured) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uint32_t</td><td>uint32_t lr_value (id of the process its stack pointer should get secured) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_81364f9c3a7b774dcc725af4dc8c02d9.html">EBSy</a></li><li class="navelem"><a class="el" href="dir_bb290b36d07a592cbcbaae32ce66f10b.html">Praktikum</a></li><li class="navelem"><a class="el" href="dir_bf8ac0d4981c318ead213e6ccfc8278c.html">4_Woche</a></li><li class="navelem"><a class="el" href="dir_a542e71d9e0ce6aa355ad54adf01976f.html">Basisprojekt</a></li><li class="navelem"><b>exception_handler.h</b></li>
+    <li class="navelem"><a class="el" href="dir_81364f9c3a7b774dcc725af4dc8c02d9.html">EBSy</a></li><li class="navelem"><a class="el" href="dir_bb290b36d07a592cbcbaae32ce66f10b.html">Praktikum</a></li><li class="navelem"><a class="el" href="dir_bf8ac0d4981c318ead213e6ccfc8278c.html">4_Woche</a></li><li class="navelem"><a class="el" href="dir_a542e71d9e0ce6aa355ad54adf01976f.html">Basisprojekt</a></li><li class="navelem"><a class="el" href="exception__handler__in__c_8c.html">exception_handler_in_c.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

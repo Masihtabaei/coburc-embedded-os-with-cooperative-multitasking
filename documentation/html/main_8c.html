@@ -96,70 +96,12 @@ $(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">main.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &quot;stm32g474xx.h&quot;</code><br />
-<code>#include &quot;delay.h&quot;</code><br />
-<code>#include &quot;context.h&quot;</code><br />
-<code>#include &quot;exception_handler.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprocess__context__block.html">process_context_block</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ae3528ea453c06076df74a6e76d04072f"><td class="memItemLeft" align="right" valign="top"><a id="ae3528ea453c06076df74a6e76d04072f" name="ae3528ea453c06076df74a6e76d04072f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>RIGHT_HAND_SIDE</b>&#160;&#160;&#160;((uint8_t) 0)</td></tr>
-<tr class="separator:ae3528ea453c06076df74a6e76d04072f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44f3b95a644ed8d6f9aaf056b864d3b0"><td class="memItemLeft" align="right" valign="top"><a id="a44f3b95a644ed8d6f9aaf056b864d3b0" name="a44f3b95a644ed8d6f9aaf056b864d3b0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>LEFT_HAND_SIDE</b>&#160;&#160;&#160;((uint8_t) 1)</td></tr>
-<tr class="separator:a44f3b95a644ed8d6f9aaf056b864d3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a609a4897db2c16e3f8288f275bbd3c64"><td class="memItemLeft" align="right" valign="top"><a id="a609a4897db2c16e3f8288f275bbd3c64" name="a609a4897db2c16e3f8288f275bbd3c64"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TO_RIGHT</b>&#160;&#160;&#160;((uint8_t) 2)</td></tr>
-<tr class="separator:a609a4897db2c16e3f8288f275bbd3c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a4c11579cb0c38e216f1095dd4394d6"><td class="memItemLeft" align="right" valign="top"><a id="a1a4c11579cb0c38e216f1095dd4394d6" name="a1a4c11579cb0c38e216f1095dd4394d6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TO_LEFT</b>&#160;&#160;&#160;((uint8_t) 3)</td></tr>
-<tr class="separator:a1a4c11579cb0c38e216f1095dd4394d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a934d2c1497dd3c19fddf590ab0cff342"><td class="memItemLeft" align="right" valign="top"><a id="a934d2c1497dd3c19fddf590ab0cff342" name="a934d2c1497dd3c19fddf590ab0cff342"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NUMBER_OF_PROCESSES</b>&#160;&#160;&#160;((uint8_t) 4)</td></tr>
-<tr class="separator:a934d2c1497dd3c19fddf590ab0cff342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af09585f7ed7bd2bab402a07dd048578b"><td class="memItemLeft" align="right" valign="top"><a id="af09585f7ed7bd2bab402a07dd048578b" name="af09585f7ed7bd2bab402a07dd048578b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIZE_OF_STACK_FRAME_PRO_PROCESS</b>&#160;&#160;&#160;((uint8_t) 14)</td></tr>
-<tr class="separator:af09585f7ed7bd2bab402a07dd048578b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73eca73fb4fd11c1f0841f0206cd2737"><td class="memItemLeft" align="right" valign="top"><a id="a73eca73fb4fd11c1f0841f0206cd2737" name="a73eca73fb4fd11c1f0841f0206cd2737"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIZE_OF_SUB_STACK_PRO_PROCESS</b>&#160;&#160;&#160;((uint8_t) 32)</td></tr>
-<tr class="separator:a73eca73fb4fd11c1f0841f0206cd2737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ae649e0d5eed225121c1cedaa48ad64b2"><td class="memItemLeft" align="right" valign="top"><a id="ae649e0d5eed225121c1cedaa48ad64b2" name="ae649e0d5eed225121c1cedaa48ad64b2"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>process_function</b>) (void)</td></tr>
-<tr class="separator:ae649e0d5eed225121c1cedaa48ad64b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a4e1a76273cf189daed25256e3ba34aef"><td class="memItemLeft" align="right" valign="top"><a id="a4e1a76273cf189daed25256e3ba34aef" name="a4e1a76273cf189daed25256e3ba34aef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>process_state</b> { <b>IDLE</b>
-, <b>RUNNING</b>
-, <b>DESTROYED</b>
-, <b>MARKED_FOR_DESTRUCTION</b>
- }</td></tr>
-<tr class="separator:a4e1a76273cf189daed25256e3ba34aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2055221c247df275561336e77447e10c"><td class="memItemLeft" align="right" valign="top"><a id="a2055221c247df275561336e77447e10c" name="a2055221c247df275561336e77447e10c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>process_manipulation_status</b> { <b>SUCCESSFULLY_DESTROYED</b>
-, <b>ALREADY_DESTROYED</b>
-, <b>DESTRUCTION_BLOCKED_DURING_EXECUTION</b>
- }</td></tr>
-<tr class="separator:a2055221c247df275561336e77447e10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9c62b3f119103e7a664521965f398bac"><td class="memItemLeft" align="right" valign="top"><a id="a9c62b3f119103e7a664521965f398bac" name="a9c62b3f119103e7a664521965f398bac"></a>
@@ -177,8 +119,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>move_led</b> (uint
 <tr class="memitem:a472a151312bd0b6f6047194a012ef088"><td class="memItemLeft" align="right" valign="top">process_manipulation_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a472a151312bd0b6f6047194a012ef088">destroy</a> (process_id id_of_process_to_destoroy)</td></tr>
 <tr class="memdesc:a472a151312bd0b6f6047194a012ef088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function defined as a part of our API for destroying a process.  <br /></td></tr>
 <tr class="separator:a472a151312bd0b6f6047194a012ef088"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="memItemLeft" align="right" valign="top"><a id="a7cb51f5c2b5cad3766f19eb69c92793b" name="a7cb51f5c2b5cad3766f19eb69c92793b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>yield</b> (void)</td></tr>
+<tr class="memitem:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7cb51f5c2b5cad3766f19eb69c92793b">yield</a> (void)</td></tr>
+<tr class="memdesc:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function defined as a part of our API for process scheduling (most important) and freeing up the ressources.  <br /></td></tr>
 <tr class="separator:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adec34b4e137b0bfca9f67a58d8bc7ff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#adec34b4e137b0bfca9f67a58d8bc7ff5">process_for_startup_and_initialization</a> (void)</td></tr>
 <tr class="memdesc:adec34b4e137b0bfca9f67a58d8bc7ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used as a process for taking care of the startup process and all initializations.  <br /></td></tr>
@@ -201,15 +143,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>yield</b> (void)</td>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used as the entry point of the application.  <br /></td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:adb638793cd8b8a56e2394a8be48ab2a0"><td class="memItemLeft" align="right" valign="top"><a id="adb638793cd8b8a56e2394a8be48ab2a0" name="adb638793cd8b8a56e2394a8be48ab2a0"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>processes_stacks</b> [NUMBER_OF_PROCESSES][SIZE_OF_SUB_STACK_PRO_PROCESS]</td></tr>
-<tr class="separator:adb638793cd8b8a56e2394a8be48ab2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8dffc476b31a37e1a5fe6d6b8042430"><td class="memItemLeft" align="right" valign="top"><a id="ab8dffc476b31a37e1a5fe6d6b8042430" name="ab8dffc476b31a37e1a5fe6d6b8042430"></a>
-<a class="el" href="structprocess__context__block.html">process_context_block</a>&#160;</td><td class="memItemRight" valign="bottom"><b>process_list</b> [NUMBER_OF_PROCESSES]</td></tr>
-<tr class="separator:ab8dffc476b31a37e1a5fe6d6b8042430"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aad192b8ddb2dce13b0213e3b0b4ed8f7" name="aad192b8ddb2dce13b0213e3b0b4ed8f7"></a>
@@ -271,7 +204,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>processes_stacks<
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">process_id</td><td>id_of_process_to_destoroy (parameter containing the ID for identifying the process to destroy) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">process_id</td><td>id_of_process_to_destroy (parameter containing the ID for identifying the process to destroy) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">process_manipulation_status</td><td>(status of the manipulation [in this case destruction]-action) </td></tr>
   </table>
   </dd>
@@ -299,7 +232,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>processes_stacks<
 <p>Serving as the entry point of the application by taking care of following tasks:</p><ul>
 <li>Creating a process for startup and initialization</li>
 <li>Loading the initial/first context</li>
-<li>Keeping the program running by using an infinite loop (while(1/true)).</li>
+<li>Keeping the program running by using an infinite loop (while(1/true))</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -492,6 +425,38 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>processes_stacks<
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">process_id</td><td>process_id_of_process_to_update (id of the process its stack pointer should get secured) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uintptr_t</td><td>new_value_of_process_stack_pointer (new/current value of the stack pointer for the process previously specified by its id) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7cb51f5c2b5cad3766f19eb69c92793b" name="a7cb51f5c2b5cad3766f19eb69c92793b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb51f5c2b5cad3766f19eb69c92793b">&#9670;&#160;</a></span>yield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void yield </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function defined as a part of our API for process scheduling (most important) and freeing up the ressources. </p>
+<p>Scheduling and freeing up the resources by accomplishing following tasks:</p><ul>
+<li>Finding the process currently running and changing its state</li>
+<li>Finding the process that should get executed next and changing its state</li>
+<li>Switching from the old process to the new one by calling the corresponding function</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">void</td><td></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">void</td><td></td></tr>
   </table>
   </dd>

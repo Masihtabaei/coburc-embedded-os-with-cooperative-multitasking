@@ -25,9 +25,6 @@
 var NAVTREE =
 [
   [ "ThirdProjectEBSy", "index.html", [
-    [ "Data Structures", "annotated.html", [
-      [ "Data Structures", "annotated.html", "annotated_dup" ]
-    ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
@@ -40,7 +37,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"dir_81364f9c3a7b774dcc725af4dc8c02d9.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

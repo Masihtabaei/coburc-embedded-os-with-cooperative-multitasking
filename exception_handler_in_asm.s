@@ -14,10 +14,16 @@
 	; Return Value(s): -
 HardFault_Handler PROC
 	EXPORT HardFault_Handler ; Exposing the definition of this procedure
-	TST LR, #4
-	ITE EQ
+	TST LR, #4 ; Testing/checking whether PSP or MSP was in use
+	ITE EQ ; Indicating that we have a conditional block here
+	; Moving the content of MSP (if MSP was active)
+	; into R0 (register used for holding the first parameter in the hard_fault_handler_over_c-function) 
 	MRSEQ R0, MSP
+	; Moving the content of PSP (if MSP was active)
+	; into R0 (register used for holding the first parameter in the hard_fault_handler_over_c-function) 
 	MRSNE R0, PSP
+	; Moving the conent of LR into R1
+	; (register used for holding the second parameter in the hard_fault_handler_over_c-function) 
 	MOV R1, LR
 	BL hard_fault_handler_over_c ; Calling a function written in C which takes care of the rest
 

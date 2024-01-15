@@ -1,7 +1,20 @@
-///@file exception_handler.c
+///@file exception_handler_in_c.c
 
 #include "exception_handler.h"
 
+/**
+Function used for handling the hard faults.
+
+Handling the hard faults occured by accomplishing following tasks:
+	- Defining a buffer for displaying stacked values
+	- Setting breakpoints (once before displaying the stacked values and once after that)
+	- Keeping the program running by using an infinite loop (while(1/true))
+
+@param[in] uint32_t* hardfault_args (id of the process its stack pointer should get secured)
+@param[in] uint32_t uint32_t lr_value (id of the process its stack pointer should get secured)
+@param[out] void
+
+*/
 void hard_fault_handler_over_c(uint32_t* hardfault_args, uint32_t lr_value)
 {
 	// Defining a multi-dimensional array that will later get used as a buffer for sprintf
