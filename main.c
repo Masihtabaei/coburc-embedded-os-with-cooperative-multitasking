@@ -31,75 +31,8 @@
 
 /*  - I n c l u d e s                                                    */
 
-#include <stdint.h>
-#include "stm32g474xx.h"
-#include "delay.h"
-#include "context.h"
-#include "exception_handler.h"
+#include "main.h"
 
-/* ----------- V A R I A B L E S   &  C O N S T A N T S  --------------- */
-// Defining a macro representing the right hand side of our led sequence
-#define RIGHT_HAND_SIDE ((uint8_t) 0)
-// Defining a macro representing the left hand side of our led sequence
-#define LEFT_HAND_SIDE ((uint8_t) 1)
-// Defining a macro representing the direction of led shift (in this case we shift them from left to right)
-#define TO_RIGHT ((uint8_t) 2)
-// Defining a macro representing the direction of led shift (in this case we shift them from right to left)
-#define TO_LEFT ((uint8_t) 3)
-
-
-#define NUMBER_OF_PROCESSES ((uint8_t) 4)
-#define SIZE_OF_STACK_FRAME_PRO_PROCESS ((uint8_t) 14)
-#define SIZE_OF_SUB_STACK_PRO_PROCESS ((uint8_t) 32)
-uint32_t processes_stacks[NUMBER_OF_PROCESSES][SIZE_OF_SUB_STACK_PRO_PROCESS];
-
-typedef void (*process_function)(void);
-
-
-
-typedef enum  
-{
-	IDLE,
-	RUNNING,
-	DESTROYED,
-	MARKED_FOR_DESTRUCTION
-} process_state;
-
-typedef enum
-{
-	SUCCESSFULLY_DESTROYED,
-	ALREADY_DESTROYED,
-	DESTRUCTION_BLOCKED_DURING_EXECUTION
-} process_manipulation_status;
-
-typedef struct 
-{
-	process_id id;
-	process_state state;
-	uintptr_t process_stack_pointer;
-} process_context_block;
-
-
-process_context_block process_list[NUMBER_OF_PROCESSES];
-
-/* ------------- F u n c t i o n  P r o t o t y p e s  ----------------- */
-
-// Declaring a function for the manage_right_hand_side-function (you can find more information on this function down by its defintion)
-void manage_right_hand_side(void);
-// Declaring a function for the manage_left_hand_side-function (you can find more information on this function down by its defintion)
-void manage_left_hand_side(void);
-// Declaring a function for the move_led-function (you can find more information on this function down by its defintion)
-uint8_t move_led(uint8_t hand_side, uint8_t led_numeric_position, uint8_t direction);
-
-process_id create(process_function function_responsible_for_this_process);
-// Declaring the "destroy"-function whose definition can be found inside of the "main.c"-file
-process_manipulation_status destroy(process_id id_of_process_to_destoroy);
-void yield(void);
-
-void process_for_startup_and_initialization(void);
-void process_for_left_strip_of_leds(void);
-void process_for_right_strip_of_leds(void);
-void process_for_delay_between_steps(void);
 
 /* ----------------------- F U N C T I O N S  -------------------------- */
 
@@ -243,7 +176,17 @@ uint8_t move_led(uint8_t hand_side, uint8_t led_numeric_position, uint8_t direct
 	return led_numeric_position;
 }
 
+/**
+Function defined as a part of our API for creating a new process.
 
+Creating a new process by accomplishing following tasks:
+	- Creating a new instance of the "process_context_block" and assigning an ID, a state and the given function pointer to it
+	- Adding the created instance to the list of the processes
+
+@param[in] ledx function_of_process_to_create (function pointer to the function for which we will create a process)
+@param[out] process_id (ID of the process created)
+
+*/
 process_id create(process_function function_for_process_to_create)
 {
 	uint32_t actual_process_id = 0;
@@ -267,7 +210,7 @@ process_id create(process_function function_for_process_to_create)
 Function defined as a part of our API for destroying a process.
 
 Destroying a process by accomplishing following tasks:
-	- Getting the process context vlock of the process which should be destroyed with the given ID from the processes list
+	- Getting the process context of the process which should be destroyed with the given ID from the processes list
 	- Taking a decision whether the process can be destroyed or not by checking these 2 cases:
 		- Checking whether a process is already destroyed
 			-> Returning a manipulation status indicating that the process is already destroyed.
@@ -339,11 +282,34 @@ void yield(void)
 	switch_context(id_of_process_currently_running, id_of_process_to_run);
 }
 
+/**
+Function used as a process for taking care of the startup process and all initializations.
+
+Taking care of the startup process and all initialization by accomplishing following task (this process is executed only once and at the very beginning):
+	- Setting the state of itself into the "RUNNING" state
+	- Creating the rest of processes
+	- Enabling the clock for GPIOA
+	- Configuring the first 8 pins of GPIOA as output-pins
+	- Turning all leds off
+	- Destroying itself
+	- Giving up the resources at the end
+
+@param[in] void
+@param[out] void
+
+*/
 void process_for_startup_and_initialization(void)
 {
+	// Setting its state into the "RUNNING" state
 	process_list[0].state = RUNNING;
+	
+	// Creating the rest of processes
+	
+	// Creating a process for taking care of the left strip of leds
 	create(process_for_left_strip_of_leds);
+	// Creating a process for taking care of the right strip of leds
 	create(process_for_right_strip_of_leds);
+	// Creating a process for having a delay between leds getting shifted
 	create(process_for_delay_between_steps);
 	
 	//create(process_for_right_strip_of_leds);
@@ -368,25 +334,62 @@ void process_for_startup_and_initialization(void)
 	// Turning all leds off
 	GPIOC->ODR = 0x0000;
 	
+	// Destroying itself (actually marking itself for destruction)
 	destroy(0);
+	
+	// Giving up the resources cooperatievly
 	yield();
 }
+
+/**
+Function used as a process for managing the left strip of leds.
+
+Managing leds on the left half side (shifting of its leds) by calling the corresponding function and giving up the resources at the end by calling the yield function
+
+@param[in] void
+@param[out] void
+
+*/
 void process_for_left_strip_of_leds(void)
 {
+	// Shifting the leds on the left hand side by calling the corresponding function
 	manage_left_hand_side();
+	// Giving up the resources cooperatievly
 	yield();
 }
 
+/**
+Function used as a process for managing the right strip of leds.
+
+Managing leds on the right half side (shifting of its leds) by calling the corresponding function and giving up the resources at the end by calling the yield function
+
+@param[in] void
+@param[out] void
+
+*/
 void process_for_right_strip_of_leds(void)
 {
+	// Shifting the leds on the right hand side by calling the corresponding function
 	manage_right_hand_side();
+	// Giving up the resources cooperatievly
 	yield();
 }
 
+/**
+Function used as a process for the delay between steps (i. e. led-shifting step).
+
+Serving as a delay process by calling the corresponding delay function and giving up the resources by calling the yield function
+
+@param[in] void
+@param[out] void
+
+*/
 void process_for_delay_between_steps(void)
 {
 	//process_list[0].state = DESTROYED;
+	// Waiting for 500 milliseconds
 	delayms(500);
+	// Giving up the resources cooperatievly
 	yield();
 }
 
@@ -409,15 +412,15 @@ void secure_the_process_stack_pointer_over_c(process_id process_id_of_process_to
 /**
 Function used for retrieving the stack pointer over the C as an alternative to Assembly.
 
-Securing the stack pointer of a specific process by assigning the new value of the stack pointer to the corresponding struct member
+Retrieving the stack pointer of a specific process by returning the current value of the stack pointer
 
-@param[in] process_id process_id_of_process_to_update (id of the process its stack pointer should get secured)
-@param[in] uintptr_t new_value_of_process_stack_pointer (new/current value of the stack pointer for the process previously specified by its id)
-@param[out] void
+@param[in] process_id process_id_of_process_to_retrieve_its_stack_pointer (id of the process its stack pointer should get secured)
+@param[out] uintptr_t (current value of the stack pointer for a process previously specified by its id)
 
 */
 uintptr_t retrieve_the_process_stack_pointer_over_c(process_id process_id_of_process_to_retrieve_its_stack_pointer)
 {
+	// Accessing and returning the current value of the stack pointer for this process
 	return process_list[process_id_of_process_to_retrieve_its_stack_pointer].process_stack_pointer;
 }
 

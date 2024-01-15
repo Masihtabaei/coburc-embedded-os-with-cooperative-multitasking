@@ -424,6 +424,16 @@
               <FileType>2</FileType>
               <FilePath>.\exception_handler_in_asm.s</FilePath>
             </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>process.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\process.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
