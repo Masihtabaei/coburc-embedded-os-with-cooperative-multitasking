@@ -1,4 +1,6 @@
-# General Information
+# Embedded OS With Cooperative Multitasking
+
+## General Information
 
 Here you will find a co-operative operating system (more precisely: co-operative scheduler) that I implemented as part of the course "Embedded Operating Systems" at the university.
 
@@ -12,3 +14,10 @@ and documented. You will find the documentation under `documentation/html` (this
 The operating system was implemented and tested for an Arm-based processor (Arm Cortex M4). A chaser light application (with 8 LEDs) was used for illustration and demonstration.
 Two processes each control 4 LEDs (one for the right and one for the left strip). There is also an initial process that takes care of all the configurations and initialisations.
 In addition, a fourth process takes care of the delay between the individual steps. By defining new processes, the two strips can be operated at different frequencies.
+
+## Videos
+
+https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/2361a3b6-c0e1-4fb2-92de-5ddf7a549d20
+https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/be7caaec-ee7d-4de1-bd18-4a8fcd31f679
+https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/c31ec3cf-6f13-47d3-b616-a32fcd1ecf0d
+
