@@ -18,6 +18,8 @@ In addition, a fourth process takes care of the delay between the individual ste
 ## Videos
 
 https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/2361a3b6-c0e1-4fb2-92de-5ddf7a549d20
+
 https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/be7caaec-ee7d-4de1-bd18-4a8fcd31f679
+
 https://github.com/Masihtabaei/embedded-os-with-cooperative-multitasking/assets/40685026/c31ec3cf-6f13-47d3-b616-a32fcd1ecf0d
 
