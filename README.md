@@ -1,5 +1,16 @@
 # Embedded OS With Cooperative Multitasking
 
+## Technologies Used
+
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+![Static Badge](https://img.shields.io/badge/armasm_(arm%20Assembly)-red?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/STM32G474_Processor-blue?style=for-the-badge&logo=stmicroelectronics)
+![Static Badge](https://img.shields.io/badge/arm_Keil_%C2%B5Vision_IDE-green?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Doxygen-yellow?style=for-the-badge)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+
 ## General Information
 
 Here you will find a co-operative operating system (more precisely: co-operative scheduler) that I implemented as part of the course "Embedded Operating Systems" at the university.
