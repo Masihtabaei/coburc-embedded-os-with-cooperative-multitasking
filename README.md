@@ -1,4 +1,4 @@
-# Embedded OS With Cooperative Multitasking
+# cobucm - A Minimal Embedded OS With Cooperative Multitasking
 
 ## Technologies Used
 
@@ -14,6 +14,8 @@
 ## General Information
 
 Here you will find a co-operative operating system (more precisely: co-operative scheduler) that I implemented as part of the course "Embedded Operating Systems" at the university.
+I called it **cobuc**. **cobuc** is a partial blend (**Coburg** \[name of a small city located in Bavaria in Southern Germany\] + **Cooperative Multitasking** )
+Feel free to extend/adjust this project so that it meets your goals.
 
 A simple API was developed for process management, which offers the following methods:
 1. create (to create new processes)
