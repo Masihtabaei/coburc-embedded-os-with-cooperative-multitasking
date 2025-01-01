@@ -1,4 +1,4 @@
-# cobucm - A Minimal Embedded OS With Cooperative Multitasking
+# coburc - A Minimal Embedded OS With Cooperative Multitasking
 
 ## Technologies Used
 
