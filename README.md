@@ -1,7 +1,7 @@
 # coburc - A Minimal Embedded OS With Cooperative Multitasking
 
 > [!NOTE]  
-> This project was completed as part of the **Embedded Operatiing Systems** course during the **Winter Term 2023/24** of our undergraduate studies, offered by [Prof. Dr. Peter Raab](https://www.oth-aw.de/hochschule/ueber-uns/personen/raab-peter/) at [Coburg University](https://www.hs-coburg.de/en/). It was originally developed outside of GitHub and later partially migrated here, so some elements may be missing.
+> This project was completed as part of the **Embedded Operatiing Systems** course during the **Winter Term 2023/24** of our undergraduate studies, offered by [Prof. Dr. Peter Raab](https://www.oth-aw.de/en/university/about-our-university/staff/raab-peter/) at [Coburg University](https://www.hs-coburg.de/en/). It was originally developed outside of GitHub and later partially migrated here, so some elements may be missing.
 
 > [!IMPORTANT]  
 > This project is licensed under the [MIT License](https://masihtabaei.dev/licenses/mit).
